@@ -150,6 +150,7 @@
      libnotify
      swww
      rofi-wayland
+     rofi-emoji
      pyprland
   ];
 
