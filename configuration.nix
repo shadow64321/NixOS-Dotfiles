@@ -143,6 +143,7 @@
      git
      python3
      starship
+     tmux
 
      # Hyprland
      waybar
