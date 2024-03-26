@@ -139,6 +139,8 @@
      vlc
      obs-studio
      cli-visualizer
+     spotify
+     spicetify-cli
      
      # Gaming
      steam
