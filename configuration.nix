@@ -137,6 +137,7 @@
      floorp
      anki
      vlc
+     obs-studio
      
      # Gaming
      steam
