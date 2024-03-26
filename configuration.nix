@@ -162,6 +162,7 @@
      libnotify
      swww
      rofi-wayland
+     rofi-power-menu
      pyprland
   ];
 
