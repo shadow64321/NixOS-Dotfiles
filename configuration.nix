@@ -135,6 +135,13 @@
      font-awesome
      mpd
      floorp
+     anki
+     vlc
+     
+     # Gaming
+     steam
+     lutris
+
 
      # Terminal
      alacritty
