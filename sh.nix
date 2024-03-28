@@ -19,5 +19,9 @@ in
     shellAliases = myAliases;
   };
 
+  programs.fish = {
+    enable = true;
+    shellAliases = myAliases;
+  };
 }
 

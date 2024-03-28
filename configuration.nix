@@ -14,10 +14,15 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   
-  # I use zsh btw
-  environment.shells = with pkgs; [ bash zsh fish ];
-  users.defaultUserShell = pkgs.zsh;
-  programs.zsh.enable = true;
+  # I use zsh btw... wait lol no I don't
+  # environment.shells = with pkgs; [ bash zsh fish ];
+  # users.defaultUserShell = pkgs.zsh;
+  # programs.zsh.enable = true;
+
+  # I use fish... maybe you have heard of it
+  environment.shells = with pkgs [ bash zsh fish ];
+  users.defaultUserShell = pkgs.fish;
+  programs.fish.enable = true; 
 
   networking.hostName = "Tofu"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -160,7 +165,7 @@
      starship
      tmux
      fish
-     oh-my-fish
+     # oh-my-fish
 
      # Terminal Commands
      asciiquarium
