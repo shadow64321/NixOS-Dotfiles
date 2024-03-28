@@ -142,6 +142,10 @@
      spotify
      spicetify-cli
      
+     # Virtulisation
+     # qemu
+     # virt-manager
+     
      # Gaming
      steam
      lutris
@@ -155,6 +159,15 @@
      python3
      starship
      tmux
+     fish
+     oh-my-fish
+
+     # Terminal Commands
+     asciiquarium
+     cmatrix
+     cowsay
+     lolcat
+     figlet # makes cool text, to pass arg: figlet "cool text here"
 
      # Hyprland
      waybar
