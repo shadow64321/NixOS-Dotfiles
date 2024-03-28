@@ -55,8 +55,8 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
-  # Configure keymap in X11
   services.xserver = {
+    # Configure keymap in X11
     layout = "au";
     xkbVariant = "";
   };
