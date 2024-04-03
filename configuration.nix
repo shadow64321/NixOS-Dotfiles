@@ -52,6 +52,18 @@
     LC_TIME = "en_AU.UTF-8";
   };
 
+  i18n.supportedLocales = [
+    "en_AU.UTF-8"
+    "ko_KR.UTF-8"
+    "ja_JP.UTF-8"
+    "zh_CN.UTF-8"
+    "zh_TW.UTF-8"
+  ];
+
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+  };
+
   # X 11
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -65,6 +77,25 @@
     layout = "au";
     xkbVariant = "";
   };
+
+
+  # Fonts
+  fonts.packages = [
+    fira-code
+    fira-code-symbols
+    fira-code-emoji
+    noto-fonts-cjk
+    adobe-source-han-sans-jp-fonts
+    adobe-source-han-sans-kr-fonts
+    adobe-source-han-sans-cn-fonts
+    adobe-source-han-sans-tw-fonts
+    
+    adobe-source-han-serif-jp-fonts
+    adobe-source-han-serif-kr-fonts
+    adobe-source-han-serif-cn-fonts
+    adobe-source-han-serif-tw-fonts
+  ];
+
 
   # Hyprland
   programs.hyprland = {
@@ -182,6 +213,13 @@
      rofi-wayland
      rofi-power-menu
      pyprland
+
+     # Multi-lingual Support
+     fcitx5
+     fcitx5-gtk
+     fcitx5-configtool
+     fcitx5-hangul # Korean Support
+     fcitx5-mozc # Japanese Support
   ];
 
   # Stuff to make steam work
