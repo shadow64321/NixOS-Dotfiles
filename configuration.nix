@@ -13,16 +13,16 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  
+
   # I use zsh btw... wait lol no I don't
   # environment.shells = with pkgs; [ bash zsh fish ];
   # users.defaultUserShell = pkgs.zsh;
   # programs.zsh.enable = true;
 
   # I use fish... maybe you have heard of it
-  environment.shells = with pkgs [ bash zsh fish ];
+  environment.shells = with pkgs; [ bash zsh fish ];
+  programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
-  programs.fish.enable = true; 
 
   networking.hostName = "Tofu"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -52,17 +52,32 @@
     LC_TIME = "en_AU.UTF-8";
   };
 
+  # Throws error
   i18n.supportedLocales = [
-    "en_AU.UTF-8"
     "ko_KR.UTF-8"
     "ja_JP.UTF-8"
-    "zh_CN.UTF-8"
-    "zh_TW.UTF-8"
   ];
 
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-  };
+  # Multi-lingual Support
+  # i18n.inputMethod.fctix5 = {
+    # waylandFrontend = true;
+    # addons = with pkgs; [
+      # fctix5-configtool
+      # fctix5-hangul
+      # fctix5-mozc
+      # fcitx5-gtk
+    # ];
+  # };
+
+  # Fonts
+  fonts.packages = with pkgs; [
+    fira-code
+    fira-code-symbols
+    noto-fonts-cjk-serif
+    noto-fonts-cjk-sans
+    hachimarupop
+    nanum
+  ];
 
   # X 11
   # Enable the X11 windowing system.
@@ -77,25 +92,6 @@
     layout = "au";
     xkbVariant = "";
   };
-
-
-  # Fonts
-  fonts.packages = [
-    fira-code
-    fira-code-symbols
-    fira-code-emoji
-    noto-fonts-cjk
-    adobe-source-han-sans-jp-fonts
-    adobe-source-han-sans-kr-fonts
-    adobe-source-han-sans-cn-fonts
-    adobe-source-han-sans-tw-fonts
-    
-    adobe-source-han-serif-jp-fonts
-    adobe-source-han-serif-kr-fonts
-    adobe-source-han-serif-cn-fonts
-    adobe-source-han-serif-tw-fonts
-  ];
-
 
   # Hyprland
   programs.hyprland = {
@@ -149,7 +145,7 @@
     description = "MystrE";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      # firefox
+      librewolf
       kate
       thunderbird
     ];
@@ -161,7 +157,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     
+
      # General
      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      neovim
@@ -177,11 +173,13 @@
      cli-visualizer
      spotify
      spicetify-cli
-     
+     syncthing
+     p7zip
+
      # Virtulisation
      # qemu
      # virt-manager
-     
+
      # Gaming
      steam
      lutris
@@ -216,10 +214,21 @@
 
      # Multi-lingual Support
      fcitx5
-     fcitx5-gtk
      fcitx5-configtool
-     fcitx5-hangul # Korean Support
-     fcitx5-mozc # Japanese Support
+     fcitx5-hangul
+     fcitx5-mozc
+     fcitx5-gtk
+
+     # Info-Sec
+     wireshark # Network inspector
+     hydra # Password brute force crack
+     okteta # Hex Editor
+     dhex # Hex Editor
+     gobuster # Website Api Fuzzer
+     nmap # Port Fuzzer
+     john # John the Ripper Password Cracker
+     wordlists # A Collection of Wordlists for Info-Sec
+     ghidra # Assembly editor
   ];
 
   # Stuff to make steam work
@@ -262,6 +271,6 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-  
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
