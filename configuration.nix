@@ -205,6 +205,7 @@
 
      # Hyprland
      waybar
+     eww-wayland
      dunst
      libnotify
      swww
@@ -221,7 +222,7 @@
 
      # Info-Sec
      wireshark # Network inspector
-     hydra # Password brute force crack
+     # hydra # Password brute force crack <- Doesn't work
      okteta # Hex Editor
      dhex # Hex Editor
      gobuster # Website Api Fuzzer
