@@ -52,22 +52,21 @@
     LC_TIME = "en_AU.UTF-8";
   };
 
-  # Throws error
   i18n.supportedLocales = [
-    "ko_KR.UTF-8"
-    "ja_JP.UTF-8"
+    "ko_KR.UTF-8/UTF-8"
+    "ja_JP.UTF-8/UTF-8"
   ];
 
   # Multi-lingual Support
-  # i18n.inputMethod.fctix5 = {
+  i18n.inputMethod.fcitx5 = {
     # waylandFrontend = true;
-    # addons = with pkgs; [
-      # fctix5-configtool
-      # fctix5-hangul
-      # fctix5-mozc
-      # fcitx5-gtk
-    # ];
-  # };
+    addons = with pkgs; [
+      fcitx5-configtool
+      fcitx5-hangul
+      fcitx5-mozc
+      fcitx5-gtk
+    ];
+  };
 
   # Fonts
   fonts.packages = with pkgs; [
