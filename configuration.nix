@@ -11,8 +11,16 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  # boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub = { 
+    enable = true;
+    useOSProber = true;
+    device = "nodev";
+    efiSupport = true;
+    extraConfig = "set theme=/grub/themes/Jingliu/theme.txt";
+    splashImage = null;
+  };
 
   # I use zsh btw... wait lol no I don't
   # environment.shells = with pkgs; [ bash zsh fish ];
@@ -24,7 +32,7 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
-  networking.hostName = "Tofu"; # Define your hostname.
+  networking.hostName = "Jeremiah"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -52,21 +60,10 @@
     LC_TIME = "en_AU.UTF-8";
   };
 
-  i18n.supportedLocales = [
-    "ko_KR.UTF-8/UTF-8"
-    "ja_JP.UTF-8/UTF-8"
-  ];
-
-  # Multi-lingual Support
-  i18n.inputMethod.fcitx5 = {
-    # waylandFrontend = true;
-    addons = with pkgs; [
-      fcitx5-configtool
-      fcitx5-hangul
-      fcitx5-mozc
-      fcitx5-gtk
-    ];
-  };
+#   i18n.supportedLocales = [
+#     "ko_KR.UTF-8/UTF-8"
+#     "ja_JP.UTF-8/UTF-8"
+#   ];
 
   # Fonts
   fonts.packages = with pkgs; [
@@ -78,7 +75,6 @@
     nanum
   ];
 
-  # X 11
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -86,8 +82,8 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
+  # Configure keymap in X11
   services.xserver = {
-    # Configure keymap in X11
     layout = "au";
     xkbVariant = "";
   };
@@ -118,6 +114,9 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Enables bluetooth
+  hardware.bluetooth.enable = true;
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -139,19 +138,23 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.mystre = {
+  users.users.jeremiah = {
     isNormalUser = true;
-    description = "MystrE";
+    description = "Jeremiah";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      librewolf
-      kate
+      firefox
+      # kate
       thunderbird
     ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.config.permittedInsecurePackages = [
+    lib.optional (pkgs.obsidian.version == "1.4.16") "electron-25.9.0"
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -169,27 +172,64 @@
      anki
      vlc
      obs-studio
-     cli-visualizer
-     spotify
-     spicetify-cli
      syncthing
      p7zip
+     # obsidian
+     rawtherapee
+     syncthing
+     # davinci-resolve-studio
+     # davinci-resolve
+
+     # Programming
+     rustup
+     go
+     python3
+     zig
+     
+
+     # Music
+     spotify
+     spicetify-cli
+     # cli-visualizer
+     blanket
+     # nuclear - Electron oof
+     musikcube
+     spotdl
+
 
      # Virtulisation
-     # qemu
-     # virt-manager
+     qemu
+     virt-manager
+
 
      # Gaming
      steam
      lutris
+     asusctl
+     
+
+     # Libre 
+     libresprite
+     libreoffice
 
 
      # Terminal
      alacritty
-     htop
-     neofetch
+     # htop
+     bat # better cat
+     gdu # disk usage analyser
+     lf # Terminal File Manager
+     killall
+     viu # allows images to be viewed in terminal
+     catimg # Same as above
+     btop # better htop
+     ascii-image-converter
+     neofetch # Depreciated
+     # uwufetch
+     # fastfetch
      git
      python3
+     # Pip???
      starship
      tmux
      fish
@@ -210,14 +250,14 @@
      swww
      rofi-wayland
      rofi-power-menu
-     pyprland
+#      pyprland
 
      # Multi-lingual Support
-     fcitx5
-     fcitx5-configtool
-     fcitx5-hangul
-     fcitx5-mozc
-     fcitx5-gtk
+#      fcitx5
+#      fcitx5-configtool
+#      fcitx5-hangul
+#      fcitx5-mozc
+#      fcitx5-gtk
 
      # Info-Sec
      wireshark # Network inspector
@@ -243,7 +283,6 @@
     "steam-original"
     "steam-run"
   ];
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -271,6 +310,16 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
+
+
+  # makes file with all installed packages in /etc directory called 'current-system-packages'
+  environment.etc."current-system-packages".text =
+  let
+    packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
+    sortedUnique = builtins.sort builtins.lessThan (pkgs.lib.lists.unique packages);
+    formatted = builtins.concatStringsSep "\n" sortedUnique;
+  in
+    formatted;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
