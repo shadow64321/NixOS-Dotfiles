@@ -33,7 +33,6 @@
   users.defaultUserShell = pkgs.fish;
 
   networking.hostName = "Jeremiah"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -76,23 +75,37 @@
   ];
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager = {
+      sddm.enable = true;
+      sddm.theme = "${import ./sddm-theme.nix { inherit pkgs; }}";
+    };
+  };
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "au";
-    xkbVariant = "";
+  # Bspwm
+  services.xserver.windowManager.bspwm = {
+    enable = true;
+    # configFile = "home/jeremiah/.config/bspwm/bspwmrc";
+    # sxhkd.configFile = "$HOME/.config/bspwm/sxhkdrc";
   };
+
+  services.picom.enable = true;
 
   # Hyprland
   programs.hyprland = {
     enable = true;
     enableNvidiaPatches = true;
     xwayland.enable = true;
+  };
+  
+  # Configure keymap in X11
+  services.xserver = {
+    layout = "au";
+    xkbVariant = "";
   };
 
   environment.sessionVariables = {
@@ -179,6 +192,8 @@
      syncthing
      # davinci-resolve-studio
      # davinci-resolve
+     gimp
+
 
      # Programming
      rustup
@@ -235,12 +250,29 @@
      fish
      # oh-my-fish
 
+
+     # Screenshotting
+     slurp
+     grim
+     swappy
+     imagemagick
+
+
      # Terminal Commands
      asciiquarium
      cmatrix
      cowsay
      lolcat
      figlet # makes cool text, to pass arg: figlet "cool text here"
+     feh # wallpaper setter + image viewer
+
+
+     # Bspwm
+     bspwm
+     polybar
+     picom
+     sxhkd
+
 
      # Hyprland
      waybar
@@ -252,12 +284,14 @@
      rofi-power-menu
 #      pyprland
 
+
      # Multi-lingual Support
 #      fcitx5
 #      fcitx5-configtool
 #      fcitx5-hangul
 #      fcitx5-mozc
 #      fcitx5-gtk
+
 
      # Info-Sec
      wireshark # Network inspector
@@ -269,6 +303,11 @@
      john # John the Ripper Password Cracker
      wordlists # A Collection of Wordlists for Info-Sec
      ghidra # Assembly editor
+
+
+     # if sddm breaks
+     #libsforqt5.qt5.qtquickcontrols2   
+     #libsforqt5.qt5.qtgraphicaleffects
   ];
 
   # Stuff to make steam work
