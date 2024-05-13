@@ -18,7 +18,7 @@
     useOSProber = true;
     device = "nodev";
     efiSupport = true;
-    extraConfig = "set theme=/grub/themes/Jingliu/theme.txt";
+    theme = "/boot/grub/themes/Jingliu";
     splashImage = null;
   };
 
@@ -66,13 +66,22 @@
 
   # Fonts
   fonts.packages = with pkgs; [
+    nerdfonts
     fira-code
     fira-code-symbols
     noto-fonts-cjk-serif
     noto-fonts-cjk-sans
     hachimarupop
     nanum
+    fantasque-sans-mono
+    noto-fonts
+    terminus-nerdfont
+    siji
+    material-icons
+    font-awesome
   ];
+ 
+  fonts.fontconfig.allowBitmaps = true;
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -178,8 +187,6 @@
      neovim
      wget
      networkmanagerapplet
-     nerdfonts
-     font-awesome
      mpd
      floorp
      anki
@@ -193,6 +200,7 @@
      # davinci-resolve-studio
      # davinci-resolve
      gimp
+     grub2_efi
 
 
      # Programming
@@ -272,6 +280,11 @@
      polybar
      picom
      sxhkd
+     bsp-layout
+     bc
+     pywal
+     networkmanager_dmenu
+     dmenu
 
 
      # Hyprland
