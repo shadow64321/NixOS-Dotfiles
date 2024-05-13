@@ -6,4 +6,4 @@
        - 'networking.hostname = "Your Chosen Hostname"'
        - 'time.timeZone', 'i18n.defaultLocale' and 'i18n.extraLocaleSettings'
        - 'users.users."Your Chosen Hostname"' and change the 'description' variables value to "Your Chosen Hostname"
-  5. run 'sudo nixos-rebuild switch' after this is run you can just use 'update'
+  5. run 'sudo nixos-rebuild switch' after this is run you can just use 'update' (see fish.conf for more commands)
