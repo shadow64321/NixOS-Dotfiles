@@ -201,6 +201,7 @@
      # davinci-resolve
      gimp
      grub2_efi
+     logseq
 
 
      # Programming
@@ -334,6 +335,8 @@
     "steam"
     "steam-original"
     "steam-run"
+    "davinci-resolve"
+    "davinci-resolve-studio"
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
