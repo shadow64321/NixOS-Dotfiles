@@ -106,7 +106,7 @@
 
   # Hyprland
   programs.hyprland = {
-    enable = true;
+    enable = false;
     enableNvidiaPatches = true;
     xwayland.enable = true;
   };
@@ -212,11 +212,10 @@
      
 
      # Music
-     spotify
-     spicetify-cli
+     # spotify
+     # spicetify-cli
      # cli-visualizer
      blanket
-     # nuclear - Electron oof
      musikcube
      spotdl
 
@@ -244,7 +243,7 @@
      gdu # disk usage analyser
      lf # Terminal File Manager
      killall
-     viu # allows images to be viewed in terminal
+     # viu # allows images to be viewed in terminal
      catimg # Same as above
      btop # better htop
      ascii-image-converter
@@ -255,12 +254,12 @@
      python3
      # Pip???
      starship
-     tmux
+     # tmux
      fish
      # oh-my-fish
 
 
-     # Screenshotting
+     # Screenshotting - Hyprland
      slurp
      grim
      swappy
@@ -286,13 +285,16 @@
      pywal
      networkmanager_dmenu
      dmenu
+     scrot
+     brightnessctl
+     betterlockscreen
 
 
      # Hyprland
-     waybar
-     eww-wayland
-     dunst
-     libnotify
+     # waybar
+     # eww-wayland
+     # dunst
+     # libnotify
      swww
      rofi-wayland
      rofi-power-menu
