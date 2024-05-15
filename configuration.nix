@@ -93,7 +93,7 @@
   };
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.plasma5.enable = false;
 
   # Bspwm
   services.xserver.windowManager.bspwm = {
@@ -260,10 +260,10 @@
 
 
      # Screenshotting - Hyprland
-     slurp
-     grim
-     swappy
-     imagemagick
+     # slurp
+     # grim
+     # swappy
+     # imagemagick
 
 
      # Terminal Commands
@@ -295,9 +295,9 @@
      # eww-wayland
      # dunst
      # libnotify
-     swww
+     # swww
      rofi-wayland
-     rofi-power-menu
+     # rofi-power-menu
 #      pyprland
 
 
@@ -323,7 +323,7 @@
 
      # if sddm breaks
      #libsforqt5.qt5.qtquickcontrols2   
-     #libsforqt5.qt5.qtgraphicaleffects
+     libsForQt5.qt5.qtgraphicaleffects
   ];
 
   # Stuff to make steam work
