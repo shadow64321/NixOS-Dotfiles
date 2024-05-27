@@ -136,6 +136,8 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  services.udisks2.enable = true;
+
   # Enables bluetooth
   hardware.bluetooth.enable = true;
 
@@ -202,6 +204,11 @@
      gimp
      grub2_efi
      logseq
+     libreoffice
+     libresprite
+     gvfs
+     xfce.xfburn
+     udiskie
 
 
      # Programming
@@ -221,8 +228,9 @@
 
 
      # Virtulisation
-     qemu
-     virt-manager
+     # qemu
+     # virt-manager
+     # virtualbox
 
 
      # Gaming
@@ -255,7 +263,7 @@
      # Pip???
      starship
      # tmux
-     fish
+     # fish
      # oh-my-fish
 
 
@@ -273,6 +281,8 @@
      lolcat
      figlet # makes cool text, to pass arg: figlet "cool text here"
      feh # wallpaper setter + image viewer
+     zoxide # Better cd
+     fzf # Fuzzyfinding for zoxide
 
 
      # Bspwm
